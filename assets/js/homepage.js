@@ -10,6 +10,7 @@ var formSubmitHandler = function(event) {
 
     if (username) {
         getUserRepos(username);
+        repoContainerEl.textContent = "";
         nameInputEl.value = "";
     }
     else{
@@ -27,6 +28,7 @@ var getUserRepos = function(user) {
   .then(function(response) {
       // response was successful
       if (response.ok) {
+          console.log(response);
           response.json().then(function(data) {
               displayRepos(data, user);
               // console.log(data);
@@ -53,13 +55,12 @@ var displayRepos = function(repos, searchTerm) {
     }
 
     // clear old content
-    repoContainerEl.textContent = "";
     repoSearchTerm.textContent = searchTerm;
 
     // loop over repos
     for (var i = 0; i < repos.length; i++) {
         // format repo name
-        var repoName = repos[i].owner.login + " / " + repos[i].name;
+        var repoName = repos[i].owner.login + "/" + repos[i].name;
 
         // create a container for each repo
         var repoEl = document.createElement("a");

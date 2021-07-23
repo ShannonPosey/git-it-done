@@ -39,7 +39,7 @@ getRepoIssues = function(repo) {
             });
         }
         else{
-            // console.log(response);
+            console.log(response);
             // if not successful, redirect to homepage
             document.location.replace("./index.html");
         }
